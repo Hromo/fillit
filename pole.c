@@ -6,7 +6,7 @@
 /*   By: bedavis <bedavis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/28 14:19:57 by bedavis           #+#    #+#             */
-/*   Updated: 2019/10/28 14:22:21 by bedavis          ###   ########.fr       */
+/*   Updated: 2019/10/31 11:40:50 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,53 +49,47 @@ void	print_pole(char pole_alpha[16][16], int m)
 
 void	put_pole(int n, __uint128_t *res, char pole_alpha[16][16])
 {
-	int			k;
 	int			i;
 	int			j;
+	int			k;
 	__uint128_t	chislo;
-	__uint128_t	del;
 
-	k = 0;
+	k = 120;
 	i = 0;
 	j = 0;
 	chislo = res[n];
-	del = ft_power(2, 120);
-	while (k++ < 121)
+	while (k >= 0)
 	{
-		if (chislo / del)
+		if ((chislo >> k) & 1)
 		{
 			pole_alpha[i][j] = (char)(n + 'A');
-			chislo = chislo - del;
 		}
-		del = del / 2;
 		j = (k % 11) ? j + 1 : 0;
 		i = (k % 11) ? i : i + 1;
+		k--;
 	}
 }
 
 void	unput_pole(int n, __uint128_t *res, char pole_alpha[16][16])
 {
-	int			k;
 	int			i;
 	int			j;
+	int			k;
 	__uint128_t	chislo;
-	__uint128_t	del;
 
-	k = 0;
+	k = 120;
 	i = 0;
 	j = 0;
 	chislo = res[n];
-	del = ft_power(2, 120);
-	while (k++ < 121)
+	while (k >= 0)
 	{
-		if (chislo / del)
+		if ((chislo >> k) & 1)
 		{
 			pole_alpha[i][j] = '.';
-			chislo = chislo - del;
 		}
-		del = del / 2;
 		j = (k % 11) ? j + 1 : 0;
 		i = (k % 11) ? i : i + 1;
+		k--;
 	}
 }
 

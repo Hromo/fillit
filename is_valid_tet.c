@@ -6,7 +6,7 @@
 /*   By: bedavis <bedavis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 11:29:26 by bedavis           #+#    #+#             */
-/*   Updated: 2019/10/28 11:35:05 by wanton           ###   ########.fr       */
+/*   Updated: 2019/10/31 11:37:29 by wanton           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,23 +90,20 @@ int			is_valid_int(__uint128_t x)
 	int			k;
 	int			i;
 	int			j;
-	__uint128_t	del;
 
-	del = ft_power(2, 120);
 	i = 0;
 	j = 0;
-	k = 0;
-	while (k++ < 121)
+	k = 120;
+	while (k >= 0)
 	{
 		index[i][j] = -1;
-		if (x / del)
+		if ((x >> k) & 1)
 		{
 			index[i][j] = 0;
-			x = x - del;
 		}
-		del = del / 2;
 		j = (k % 11) ? j + 1 : 0;
 		i = (k % 11) ? i : i + 1;
+		k--;
 	}
 	return (put_index(index));
 }
